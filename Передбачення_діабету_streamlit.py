@@ -13,7 +13,7 @@ from joblib import dump, load
 #Add streamlit title, add descriptions and load an attractive image
 st.title('Додаток з Передбачення Діабету')
 st.write('У цій роботі набір даних про діабет був взятий з лікарні Франкфурта, Німеччина. Він містить 2000 випадків спостережень за пацієнтами і 9 характеристик: Вагітність, Глюкоза, Кров\'яний тиск, Товщина шкіри, Інсулін, ІМТ, Родова Функція Діабету, Вік, Результат. Для передбачення діабету була обрана та натренована модель глибокої нейронної мережі. Тренування відбувалося на 80% випадків, тестування - на 20%. Остаточний показник точності передбачень складає 99.5%.')
-image = Image.open('/Users/aminali/Documents/Data Science/Projects/diabetes_prediction/Diabetes.jpeg')
+image = Image.open('Diabetes.jpeg')
 st.image(image, use_column_width=True)
 st.write('Укажіть ваші показніки та натисніть кнопку "Статус". ')
 
@@ -39,8 +39,8 @@ row = [pregnancies, glucose, bloodpressure, skinthickness, insulin, bmi, dpf, ag
 if (st.button('Статус')):
     feat_cols = ['Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age']
 
-    sc = load('/Users/aminali/Documents/Data Science/Projects/diabetes_prediction/scaler.joblib')
-    model = keras.models.load_model('/Users/aminali/Documents/Data Science/Projects/diabetes_prediction/my_model')
+    sc = load('scaler.joblib')
+    model = keras.models.load_model('my_model')
     result = inference(row, sc, model, feat_cols)
     
     #display the output (Step 4)
@@ -50,6 +50,6 @@ if (st.button('Статус')):
 
 @st.cache 
 def load(scaler_path, model_path):
-    sc = joblib.load('/Users/aminali/Documents/Data Science/Projects/diabetes_prediction/scaler.joblib')
-    model = joblib.load('/Users/aminali/Documents/Data Science/Projects/diabetes_prediction/my_model')
+    sc = joblib.load('scaler.joblib')
+    model = joblib.load('my_model')
     return sc , model
