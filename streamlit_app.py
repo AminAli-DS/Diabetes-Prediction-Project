@@ -24,7 +24,7 @@ def inference(row, scaler, model, feat_cols):
     features = pd.DataFrame(X, columns = feat_cols)
     if (model.predict(features)==0):
         return "Ви здорова людіна!"
-    else: return "У вас великі шанси захворіти на діабет, зверніться до лікаря! \ 
+    else: return "У вас великі шанси захворіти на діабет, зверніться до лікаря!  
     Репозіторій проекту - https://github.com/AminAli-DS/Diabetes-Prediction-Project"
 
 age =           st.sidebar.number_input("Вік", 1, 150, 25, 1)
