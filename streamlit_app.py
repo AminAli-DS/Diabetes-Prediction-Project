@@ -13,10 +13,10 @@ from joblib import dump, load
 #Add streamlit title, add descriptions and load an attractive image
 st.title('Додаток з Передбачення Діабету')
 st.write('У цій роботі набір даних про діабет був взятий з лікарні Франкфурта, Німеччина. Він містить 2000 випадків спостережень за пацієнтами і 9 характеристик: Вагітність, Глюкоза, Кров\'яний тиск, Товщина шкіри, Інсулін, ІМТ, Родова Функція Діабету, Вік, Результат. Для передбачення діабету була обрана та натренована модель глибокої нейронної мережі. Тренування відбувалося на 80% випадків, тестування - на 20%. Остаточний показник точності передбачень складає 99.5%.')
+st.write('Репозіторій проекту - https://github.com/AminAli-DS/Diabetes-Prediction-Project')
 image = Image.open('Diabetes.jpeg')
 st.image(image, use_column_width=True)
 st.write('Укажіть ваші показніки та натисніть кнопку "Статус". ')
-st.write('Репозіторій проекту - https://github.com/AminAli-DS/Diabetes-Prediction-Project')
 
 def inference(row, scaler, model, feat_cols):
     df = pd.DataFrame([row], columns = feat_cols)
@@ -25,7 +25,7 @@ def inference(row, scaler, model, feat_cols):
     if (model.predict(features)==0):
         return "Ви здорова людіна!"
     else: return "У вас великі шанси захворіти на діабет, зверніться до лікаря!  
-    Репозіторій проекту - https://github.com/AminAli-DS/Diabetes-Prediction-Project"
+    
 
 age =           st.sidebar.number_input("Вік", 1, 150, 25, 1)
 pregnancies =   st.sidebar.number_input("Вагітність", 0, 20, 0, 1)
