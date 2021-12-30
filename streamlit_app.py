@@ -16,6 +16,7 @@ st.write('У цій роботі набір даних про діабет бу�
 image = Image.open('Diabetes.jpeg')
 st.image(image, use_column_width=True)
 st.write('Укажіть ваші показніки та натисніть кнопку "Статус". ')
+st.write('(Здорові показники для тесту -  34, 2, 13, 4, 30, 6, 5, 0.55)')
 
 def inference(row, scaler, model, feat_cols):
     df = pd.DataFrame([row], columns = feat_cols)
