@@ -1,4 +1,5 @@
-#import the necessary libraries
+# Завантаження необхідних бібліотек
+
 import os
 import streamlit as st
 import joblib
@@ -10,19 +11,22 @@ import  tensorflow as tf
 from tensorflow import keras
 from joblib import dump, load
 
-#Add streamlit title, add descriptions and load an attractive image
+# Додавання назви, опису та зображення
+
 st.title('Додаток з Передбачення Діабету')
 st.write('У цій роботі набір даних про діабет був взятий з лікарні Франкфурта, Німеччина. Він містить 2000 випадків спостережень за пацієнтами і 9 характеристик: Вагітність, Глюкоза, Кров\'яний тиск, Товщина шкіри, Інсулін, ІМТ, Родова Функція Діабету, Вік, Результат. Для передбачення діабету була обрана та натренована модель глибокої нейронної мережі. Тренування відбувалося на 80% випадків, тестування - на 20%. Остаточний показник точності передбачень складає 99.5%.')
 image = Image.open('Diabetes.jpeg')
 st.image(image, use_column_width=True)
 st.write('Укажіть ваші показніки та натисніть кнопку "Статус". ')
 
+# Додавання функції з підтягаваняя моделі та масштабера та обробки даних
+
 def inference(row, scaler, model, feat_cols):
     df = pd.DataFrame([row], columns = feat_cols)
     X = scaler.transform(df)
     features = pd.DataFrame(X, columns = feat_cols)
     if (model.predict(features)==0):
-        return "Ви здорова людіна!"
+        return "Ви здорова людина!"
     else: return "У вас великі шанси захворіти на діабет, зверніться до лікаря!" 
        
 
@@ -47,10 +51,10 @@ if (st.button('Статус')):
     #display the output (Step 4)
     st.write(result) 
 
-#add the following decorator to cache the function that follows
+# Декодер для збереження фунції в кеші
 
 @st.cache 
 def load(scaler_path, model_path):
     sc = joblib.load('scaler.joblib')
-    model = joblib.load('my_model')
+    model = keras.models.load_model('my_model')
     return sc , model
