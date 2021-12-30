@@ -24,8 +24,6 @@ def inference(row, scaler, model, feat_cols):
     if (model.predict(features)==0):
         return "Ви здорова людіна!"
     else: return "У вас великі шанси захворіти на діабет, зверніться до лікаря!" 
-    
-st.write('(Здорові показники для тесту -  34, 2, 13, 4, 30, 6, 5, 0.55)')
        
 
 age =           st.sidebar.number_input("Вік", 1, 150, 25, 1)
